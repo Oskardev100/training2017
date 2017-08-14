@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     loadProduct();
-
 });
 
 function loadProduct() {
@@ -16,7 +15,6 @@ function FindMyProduct(id) {
     });
     return ProductDetails;
 }
-
 
 //Dynamic build your collection
 function buildMyProduct(myProduct) {
