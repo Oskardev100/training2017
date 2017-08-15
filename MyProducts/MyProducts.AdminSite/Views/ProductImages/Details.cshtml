@@ -27,7 +27,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Active)
+            @*@Html.DisplayNameFor(model => model.Active)*@
+            @*<img src="@Url.Content(Model.ImageSource)" style="width:90px; height:45px" />*@
+           
+            @Html.Image("../Images/Michael.jpg",
+                  "Michael Krasowski",
+                  "img-responsive img-rounded",
+                  "img Michael",
+                  new { data_action = "moreinfo" })
         </dt>
 
         <dd>

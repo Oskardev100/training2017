@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyProducts.AdminSite.Models;
+using System.Web.Routing;
 
 namespace MyProducts.AdminSite.Controllers
 {
@@ -14,6 +15,7 @@ namespace MyProducts.AdminSite.Controllers
     {
         private TrainingPOCEntities db = new TrainingPOCEntities();
 
+        #region GET
         // GET: Products
         public ActionResult Index()
         {
@@ -42,14 +44,18 @@ namespace MyProducts.AdminSite.Controllers
             ViewBag.CategoryID = new SelectList(db.Categories, "Id", "Category1");
             return View();
         }
+        #endregion
 
+        #region CREATE
         // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Model,Price,KeyWords,Active,CategoryID,CreateDateTime,UpdateDateTime")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Model,Price,KeyWords,Active,CategoryID")] Product product)
         {
+            product.CreateDateTime = DateTime.Now;
+            product.UpdateDateTime = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
@@ -76,7 +82,9 @@ namespace MyProducts.AdminSite.Controllers
             ViewBag.CategoryID = new SelectList(db.Categories, "Id", "Category1", product.CategoryID);
             return View(product);
         }
+        #endregion
 
+        #region UPDATE
         // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -84,6 +92,7 @@ namespace MyProducts.AdminSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,Model,Price,KeyWords,Active,CategoryID,CreateDateTime,UpdateDateTime")] Product product)
         {
+            product.UpdateDateTime = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
@@ -93,7 +102,9 @@ namespace MyProducts.AdminSite.Controllers
             ViewBag.CategoryID = new SelectList(db.Categories, "Id", "Category1", product.CategoryID);
             return View(product);
         }
+        #endregion
 
+        #region DELETE
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -128,5 +139,8 @@ namespace MyProducts.AdminSite.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
+
+        
     }
 }
