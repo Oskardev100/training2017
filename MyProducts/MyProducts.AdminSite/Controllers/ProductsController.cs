@@ -19,8 +19,10 @@ namespace MyProducts.AdminSite.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category);
-            return View(products.ToList());
+            var result= db.Products.Include(p => p.Category);
+
+            
+            return View();
         }
 
         // GET: Products/Details/5
@@ -35,6 +37,7 @@ namespace MyProducts.AdminSite.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(product);
         }
 

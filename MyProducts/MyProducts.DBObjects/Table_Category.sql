@@ -1,4 +1,4 @@
-USE [TrainingPOC]
+USE MyProductsLocalDB
 GO
 
 /****** Object:  Table [dbo].[Category]    Script Date: 8/10/2017 10:55:10 PM ******/
