@@ -22,7 +22,6 @@ namespace MyProducts.WebAPI.Controllers
             var x = db.Products.AsEnumerable();
             return x.ToList();
         }
-
         #region other methods
         // GET: api/Product/5
         public string Get(int id)

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $("#btnGetProducts").click(function () {
-        GetAllProducts();
+        //GetAllProducts();
     });
 });
 
